@@ -1,0 +1,12 @@
+# Lazy.nvim plugin directory
+lazy-lock.json
+
+# Neovim
+*.log
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
