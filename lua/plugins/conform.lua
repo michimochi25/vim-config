@@ -1,29 +1,28 @@
 return {
-  'stevearc/conform.nvim',
-  event = { "BufReadPre", "BufNewFile" },
-  config = function()
-    local conform = require("conform")
-    
-    conform.setup({
-      formatters_by_ft = {
-        lua = { "stylua" },
-        python = { "black" },
-        javascript = { "prettierd", "prettier", stop_after_first = true },
-        typescript = { "prettier", "prettier", stop_after_first = true },
-        javascriptreact = { "prettierd", "prettier", stop_after_first = true },
-        typescriptreact = { "prettierd", "prettier", stop_after_first = true },
-        css =  { "prettierd", "prettier", stop_after_first = true },
-        html = { "prettierd", "prettier", stop_after_first = true },
-        json = { "prettierd", "prettier", stop_after_first = true },
-        yaml = { "prettierd", "prettier", stop_after_first = true },
-        markdown = { "prettierd", "prettier", stop_after_first = true },
-        go = { "gofmt" },
-        rust = { "rustfmt" },
-      },
-      format_on_save = {
-        timeout_ms = 500,
-        lsp_fallback = true,
-      },
-    })
-  end,
+	"stevearc/conform.nvim",
+	lazy = true,
+	event = { "BufReadPre", "BufNewFile" }, -- to disable, comment this out
+	config = function()
+		require("conform").setup({
+			formatters_by_ft = {
+				lua = { "stylua" },
+				python = { "isort", "black" },
+				rust = { "rustfmt", lsp_format = "fallback" },
+				javascript = { "prettierd", "prettier", stop_after_first = true },
+			},
+			format_on_save = {
+				lsp_fallback = true,
+				async = false,
+				timeout_ms = 2000,
+			},
+		})
+
+		vim.keymap.set({ "n", "v" }, "<leader>cf", function()
+			require("conform").format({
+				lsp_fallback = true,
+				async = false,
+				timeout_ms = 1000,
+			})
+		end, { desc = "Format file or range (in visual mode)" })
+	end,
 }

@@ -14,3 +14,9 @@ vim.opt.clipboard = "unnamedplus"
 -- Leader keys
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
+
+vim.opt.splitright = true -- All vertical splits open on right
+vim.opt.splitbelow = true -- All horizontal splits open below
+
+vim.opt.shell = "powershell"
+vim.opt.termguicolors = true
