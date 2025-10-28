@@ -16,6 +16,19 @@ return {
 						["<CR>"] = require("telescope.actions").select_tab,
 					},
 				},
+				file_ignore_patterns = {
+					"node_modules",
+					"%.env",
+					"%.lock",
+					"%.sql",
+					"%.git/",
+					"^venv/", -- Ignores a folder named 'venv' at the root
+					"^.venv/", -- Ignores a folder named '.venv' at the root
+					"^env/", -- Ignores a folder named 'env' at the root
+					"^.env/", -- Ignores a folder named '.env' at the root
+					"*/venv/", -- Ignores any 'venv' folder within subdirectories
+					"*/.venv/", -- Ignores any '.venv' folder within subdirectories
+				},
 			},
 		})
 		-- Keymaps

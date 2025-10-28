@@ -18,5 +18,11 @@ vim.g.maplocalleader = "\\"
 vim.opt.splitright = true -- All vertical splits open on right
 vim.opt.splitbelow = true -- All horizontal splits open below
 
-vim.opt.shell = "powershell"
+if vim.fn.has("win32") == 1 then
+	vim.opt.shell = "C:\\Program Files\\PowerShell\\7\\pwsh.exe"
+	vim.opt.shellcmdflag = "-NoProfile -ExecutionPolicy RemoteSigned -Command"
+	vim.opt.shellquote = ""
+	vim.opt.shellxquote = ""
+end
+
 vim.opt.termguicolors = true
